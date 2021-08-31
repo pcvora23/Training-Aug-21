@@ -26,14 +26,12 @@
 
 -- 5)Create a View to Find the names (first_name, last_name), department number, and department name of the employees who work in London
     create view view1 as
-    select concat(e.FirstName,' ',E.LastName) as name,j.JobTitle,d.DepartmentID,d.DepartmentName
+    select concat(e.FirstName,' ',E.LastName) as name,d.DepartmentID,d.DepartmentName
     from Employees as e 
     join Departments as d
     on E.DepartmentID = d.DepartmentID
     join Locations as l
     on l.LocationID = d.LocationID and l.City = 'London'
-    join Jobs as j
-    on J.JobID = E.JobId
 
 -- 6)Create a View to get the department name and number of employees in the department.
     Create view View2
@@ -51,6 +49,23 @@
     on  d.DepartmentID = 90
     join JobHistory as j
     on j.DepartmentID = d.DepartmentID
+
+-- 8)Write a View to display the department name, manager name, and city.
+    create view view4
+    as select d.DepartmentName, concat(e.FirstName,' ',e.LastName) as Name ,l.City
+    from Departments as d
+    join Employees as e
+    on d.ManagerID = e.EmployeeID
+    join Locations as l
+    on d.LocationID = l.LocationID
+
+-- 9)Create a View to display department name, name (first_name, last_name), hire date, salary of the manager for all managers whose experience is more than 15 years.
+    
+    create view view5
+    as select d.DepartmentName,concat(e.FirstName,' ',e.LastName) as Name, e.HireDate ,e.Salary,DATEDIFF(year,e.HireDate,getdate()) as experience
+    from Employees as e
+    join Departments as d
+    on d.ManagerID = e.EmployeeID and DATEDIFF(year,e.HireDate,getdate()) > 15
 
 
 -- From subqueries supported files
@@ -157,3 +172,102 @@
 
 
     
+-- From View supported files
+
+-- 1)Write a query to find the addresses (location_id, street_address, city, state_province, country_name) of all the departments. 
+    select l.LocationID,l.StreetAddress,l.City,l.StateProvince,c.CountryName
+    from Locations as l
+    join Countries as c
+    on c.CountryID = l.CountryID
+
+-- 2)Write a query to find the names (first_name, last name), department ID and name of all the employees.
+    select concat(e.FirstName,' ',e.LastName) as Name,d.DepartmentID,d.DepartmentName
+    from Employees as e
+    join Departments as d
+    on e.DepartmentID = d.DepartmentID
+
+-- 3)Find the names (first_name, last_name), job, department number, and department name of the employees who work in London.
+    select concat(e.FirstName,' ',E.LastName) as name,j.JobID,d.DepartmentID,d.DepartmentName
+    from Employees as e 
+    join Departments as d
+    on E.DepartmentID = d.DepartmentID
+    join Locations as l
+    on l.LocationID = d.LocationID and l.City = 'London'
+	join JobHistory as j
+	on j.EmployeeID = e.EmployeeID
+
+-- 4) Write a query to find the employee id, name (last_name) along with their manager_id, manager name (last_name).
+    select e.EmployeeID as 'Emp_Id',e.LastName  as 'emp name',em.ManagerID as 'Mgr_Id',em.LastName as 'Mgr Name'
+    from Employees as e
+    join Employees as em
+    on  e.ManagerID =em.EmployeeID
+
+-- 5)Find the names (first_name, last_name) and hire date of the employees who were hired after 'Jones'.    
+    select concat(e.FirstName,' ',e.LastName) as Name,e.HireDate
+    from Employees as e
+    where HireDate > (select HireDate from Employees where LastName = 'Jones')
+
+-- 6)Write a query to get the department name and number of employees in the department. 
+    select distinct(d.DepartmentName),count(e.EmployeeID) as number_of_employees
+    from Departments as d 
+    join Employees as e
+    on d.DepartmentID = e.DepartmentID
+    group by DepartmentName
+      
+    --OR
+    select * from View2
+
+-- 7)Find the employee ID, job title, number of days between ending date and starting date for all jobs in department 90 from job history.
+    select e.EmployeeID,datediff(day,j.StartDate,j.EndDate) as no_of_days
+    from Employees as e
+    join  Departments as d
+    on  d.DepartmentID = 90
+    join JobHistory as j
+    on j.DepartmentID = d.DepartmentID
+         --OR
+    select * from view3
+
+-- 8)Write a query to display the department ID, department name and manager first name.
+    select d.DepartmentID,d.DepartmentName,e.FirstName as Mgr_name
+    from Employees as e
+    join Departments as d
+    on e.EmployeeID = d.ManagerID
+
+-- 9)Write a query to display the department name, manager name, and city.
+    select d.DepartmentName, concat(e.FirstName,' ',e.LastName) as Name ,l.City
+    from Departments as d
+    join Employees as e
+    on d.ManagerID = e.EmployeeID
+    join Locations as l
+    on d.LocationID = l.LocationID
+           --OR
+    select * from view4
+
+-- 10)Write a query to display the job title and average salary of employees. 
+    select j.JobTitle,avg(Salary)
+    from Employees as e
+    join Jobs as j
+    on e.JobId = j.JobID
+    group by j.JobTitle
+
+-- 11)Display job title, employee name, and the difference between salary of the employee and minimum salary for the job.    
+    select j.JobTitle,e.FirstName,e.Salary - j.MinSalary as salarydiff
+    from Employees as e
+    join Jobs as j
+    on e.JobId = j.JobID
+
+-- 12)Write a query to display the job history that were done by any employee who is currently drawing more than 10000 of salary. 
+    select j.* 
+    from Employees as e
+    join JobHistory as j
+    on e.EmployeeID  =j.EmployeeID and e.Salary >10000
+
+-- 13)Write a query to display department name, name (first_name, last_name), hire date, salary of the manager for all managers whose experience is more than 15 years.
+    select d.DepartmentName,concat(e.FirstName,' ',e.LastName) as Name, e.HireDate ,e.Salary,DATEDIFF(year,e.HireDate,getdate()) as experience
+    from Employees as e
+    join Departments as d
+    on d.ManagerID = e.EmployeeID and DATEDIFF(year,e.HireDate,getdate()) > 15
+
+          --OR
+
+    select * from view5
