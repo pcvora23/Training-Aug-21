@@ -43,4 +43,4 @@
         on j.DepartmentID = d.DepartmentID
 
     -- Now if you run the sp_helptext command to view the definition, you get the following error message.
-        -- The text for object 'View3' is encrypted.
+    -- The text for object 'View3' is encrypted.
