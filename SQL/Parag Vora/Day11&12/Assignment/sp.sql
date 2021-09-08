@@ -66,3 +66,33 @@ EXEC Get_detail_same_branch_city_depositor 'ANIL'
 
 -- Q6: Create a Procedure which will accept input in JSON parameter CustomerName,City, ACTNO,Branch,amount And insert these record in the Deposit table. Before inserting some validation should be done like amount should be greater than 10Rs. and date should always be current date.  
     
+    CREATE PROCEDURE ADDJSONDATA @JSON NVARCHAR(MAX)
+    AS
+	BEGIN
+        INSERT INTO Deposit(ACTNO,Cname,Bname,Amount,Adate)
+        SELECT ACTNO,CustomerName,Branch,amount,Adate=CAST(getdate() AS date)
+        FROM OPENJSON(@JSON)
+        WITH(
+                ACTNO INT,
+                CustomerName VARCHAR(50),
+                Branch VARCHAR(50),
+                amount MONEY
+            )
+        WHERE amount>10 
+
+		INSERT INTO CUSTOMER(CNAME,CITY) 
+		SELECT CustomerName,CITY
+		FROM  OPENJSON(@JSON)
+		WITH(
+				CustomerName VARCHAR(50),
+                CITY VARCHAR(50)
+            )
+		WHERE  CustomerName NOT IN(SELECT CNAME FROM CUSTOMER)
+	END
+
+    -- EXECUTING QUERY
+    DECLARE @JSON NVARCHAR(MAX) 
+	SET @JSON=
+    '[{"ACTNO":"512","CustomerName":"KETAN","Branch":"AJNI","amount":512,"CITY":"MUMBAI"},
+	{"ACTNO":"513","CustomerName":"JEEL","Branch":"AJNI","amount":210,"CITY":"RAJKOT"}]'
+    EXEC ADDJSONDATA @JSON
