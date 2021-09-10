@@ -48,6 +48,30 @@
     (10,'RUTVIK BANDHANIYA',13500,3200)
 
 
+-- UPDATE TOTAL FEES AND REAMIANING AMOUNT IN STUDENT TABLE SIMULTANEOUSLY
+    CREATE TRIGGER TRG_INSERT_DATA
+    ON COURSEENROLLED
+    FOR INSERT
+    AS
+    BEGIN
+        DECLARE @STUDENTID INT,@COURSEID INT
+        SELECT  @STUDENTID =StudentID,@COURSEID = CourseID FROM inserted
+        UPDATE Student
+        SET TotalFees =TotalFees + (SELECT TotalFees FROM Course WHERE CourseID = @COURSEID),
+            RemainingAmt = (SELECT TotalFees FROM Course WHERE CourseID = @COURSEID) - (SELECT AmountPaid FROM FeePayment WHERE StudentID = @STUDENTID)
+            WHERE StudentID = @STUDENTID
+    END
+
+-- You can't define AFTER triggers on views.
+-- INSTEAD OF TRIGGERS
+
+    -- A typical example of using an INSTEAD OF trigger is to override an insert, update, or delete operation on a view.
 
 
+    CREATE TRIGGER [schema_name.] trigger_name
+    ON {table_name | view_name }
+    INSTEAD OF {[INSERT] [,] [UPDATE] [,] [DELETE] }
+    AS
+    {sql_statements}
 
+    
