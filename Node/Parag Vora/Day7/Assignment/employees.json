@@ -1,0 +1,260 @@
+[
+    {
+        "AddressLine1": "xyz hola bridge",
+        "AddressLine2": "near firangi flats",
+        "AddressLine3": "riverfront",
+        "CitizenshipId": 1,
+        "CitizenshipLegislationCode": "A1",
+        "CitizenshipStatus": "Indian",
+        "CitizenshipToDate": "28/12/2012",
+        "City": "Ahmedabad",
+        "CorrespondenceLanguage": "Gujarati",
+        "Country": "India",
+        "CreationDate": "28/12/2012 14:15:17 EST",
+        "DateOfBirth": "28/12/2012",
+        "DisplayName": "parag",
+        "DriversLicenseExpirationDate": "28/12/2012",
+        "DriversLicenseId": 123456,
+        "DriversLicenseIssuingCountry": "India",
+        "EffectiveStartDate": "28/12/2012",
+        "Ethnicity": "Indo-Aryan",
+        "FirstName": "Mohandas",
+        "Gender": "Male",
+        "HireDate": "28/12/2012",
+        "HomeFaxAreaCode": "A4552",
+        "HomeFaxCountryCode": "I15545",
+        "HomeFaxExtension": ".pdf",
+        "HomeFaxLegislationCode": "D554",
+        "HomeFaxNumber": "1225455",
+        "HomePhoneAreaCode": "A455522",
+        "HomePhoneCountryCode": "012",
+        "HomePhoneExtension": "48485",
+        "HomePhoneLegislationCode": "4542200",
+        "HomePhoneNumber": "7990165272",
+        "Honors": "Mr",
+        "LastName": "vora",
+        "LastUpdateDate": "28/12/2012",
+        "LegalEntityId": 54811,
+        "LicenseNumber": "FFEE0215454",
+        "MaritalStatus": "unMarried",
+        "MiddleName": "jagdishbhai",
+        "MilitaryVetStatus": "No",
+        "NameSuffix": "kumar",
+        "NationalId": "264644",
+        "NationalIdCountry": "99",
+        "assignments": [
+            {
+                "ActionCode": "1",
+                "ActionReasonCode": "1",
+                "ActualTerminationDate": "28/12/2012",
+                "AssignmentCategory": "student",
+                "AssignmentId": "1",
+                "AssignmentName": "regex",
+                "AssignmentNumber": "111",
+                "AssignmentProjectedEndDate": "28/12/2012",
+                "AssignmentStatus": "in progress",
+                "AssignmentStatusTypeId": 11223344,
+                "BusinessUnitId": 11223344,
+                "CreationDate": "28/12/2012",
+                "DefaultExpenseAccount": "Yes",
+                "DepartmentId": 11223344,
+                "EffectiveEndDate": "28/12/2012",
+                "EffectiveStartDate": "28/12/2012",
+                "EndTime": "16:40:12",
+                "Frequency": "15",
+                "FullPartTime": "Yes",
+                "GradeId": 11223344,
+                "GradeLadderId": 11223344,
+                "JobId": 11223344,
+                "LastUpdateDate": "28/12/2012",
+                "LegalEntityId": 11223344,
+                "LocationId": 11223344,
+                "ManagerAssignmentId": 11223344,
+                "ManagerId": 11223344,
+                "assignmentDFF": [],
+                "assignmentExtraInformation": [],
+                "empreps": [],
+                "links": [
+                    "Ratan Tata"
+                ]
+            },
+            {
+                "ActionCode": "2",
+                "ActionReasonCode": "2",
+                "ActualTerminationDate": "28/12/2012",
+                "AssignmentCategory": "teacher",
+                "AssignmentId": "2",
+                "AssignmentName": "problem solving",
+                "AssignmentNumber": "222",
+                "AssignmentProjectedEndDate": "28/12/2012",
+                "AssignmentStatus": "Completed",
+                "AssignmentStatusTypeId": 55667788,
+                "BusinessUnitId": 55667788,
+                "CreationDate": "28/12/2012",
+                "DefaultExpenseAccount": "Yes",
+                "DepartmentId": 55667788,
+                "EffectiveEndDate": "28/12/2012",
+                "EffectiveStartDate": "28/12/2012",
+                "EndTime": "16:40:12",
+                "Frequency": "15",
+                "FullPartTime": "Yes",
+                "GradeId": 55667788,
+                "GradeLadderId": 55667788,
+                "JobId": 55667788,
+                "LastUpdateDate": "28/12/2012",
+                "LegalEntityId": 55667788,
+                "LocationId": 55667788,
+                "ManagerAssignmentId": 55667788,
+                "ManagerId": 55667788,
+                "assignmentDFF": [],
+                "assignmentExtraInformation": [],
+                "empreps": [],
+                "links": [
+                    "Sardar Patel"
+                ]
+            }
+        ],
+        "directReports": [
+            "school certificate",
+            "driving license"
+        ],
+        "id": 1,
+        "links": [
+            "ambedkar doctor",
+            "Ratan Tata"
+        ]
+    },
+    {
+        "FirstName": "Gaurav",
+        "LastName": "ponkiya",
+        "id": 2
+    },
+    {
+        "FirstName": "madhav",
+        "LastName": "vadodariya",
+        "id": 3
+    },
+    {
+        "FirstName": "akshay",
+        "LastName": "sagpariya",
+        "id": 4
+    },
+    {
+        "FirstName": "sagar",
+        "LastName": "dobariya",
+        "id": 5,
+        "assignments": [
+            {
+                "ActionCode": "5",
+                "ActionReasonCode": "5",
+                "ActualTerminationDate": "5/5/2005",
+                "AssignmentCategory": "codder",
+                "AssignmentId": "5"
+            }
+        ]
+    },
+    {
+        "FirstName": "Rushit",
+        "LastName": "topiya",
+        "id": 6,
+        "assignments": [
+            {
+                "ActionCode": "12569",
+                "ActionReasonCode": "1",
+                "ActualTerminationDate": "28/12/2012",
+                "AssignmentCategory": "studnet",
+                "AssignmentId": "1",
+                "AssignmentName": "Accounting",
+                "AssignmentNumber": "111",
+                "AssignmentProjectedEndDate": "19/03/1941",
+                "AssignmentStatus": "Completed",
+                "AssignmentStatusTypeId": 11223344,
+                "BusinessUnitId": 11223344,
+                "CreationDate": "19/01/1941",
+                "DefaultExpenseAccount": "Yes",
+                "DepartmentId": 11223344,
+                "EffectiveEndDate": "19/02/1941",
+                "EffectiveStartDate": "11/02/1941",
+                "EndTime": "16:40:12",
+                "Frequency": "15",
+                "FullPartTime": "Yes",
+                "GradeId": 11223344,
+                "GradeLadderId": 11223344,
+                "JobId": 11223344,
+                "LastUpdateDate": "19/03/1941",
+                "LegalEntityId": 11223344,
+                "LocationId": 11223344,
+                "ManagerAssignmentId": 11223344,
+                "ManagerId": 11223344,
+                "assignmentDFF": [],
+                "assignmentExtraInformation": [],
+                "empreps": [],
+                "links": [
+                    "Sardar Patel"
+                ]
+            },
+            {
+                "ActionCode": "3"
+            },
+            {
+                "ActionCode": "5"
+            }
+        ]
+    },
+    {
+        "FirstName": "parag",
+        "LastName": "vora",
+        "id": 7,
+        "assignments": [
+            {
+                "ActionCode": "1",
+                "ActionReasonCode": "1",
+                "ActualTerminationDate": "28/12/2012",
+                "AssignmentCategory": "student",
+                "AssignmentId": "1",
+                "AssignmentName": "studnet",
+                "AssignmentNumber": "111",
+                "AssignmentProjectedEndDate": "28/12/2012",
+                "AssignmentStatus": "Completed",
+                "AssignmentStatusTypeId": 11223344,
+                "BusinessUnitId": 11223344,
+                "CreationDate": "28/12/2012",
+                "DefaultExpenseAccount": "Yes",
+                "DepartmentId": 11223344,
+                "EffectiveEndDate": "28/12/2012",
+                "EffectiveStartDate": "28/12/2012",
+                "EndTime": "16:40:12",
+                "Frequency": "15",
+                "FullPartTime": "Yes",
+                "GradeId": 11223344,
+                "GradeLadderId": 11223344,
+                "JobId": 11223344,
+                "LastUpdateDate": "19/03/1941",
+                "LegalEntityId": 11223344,
+                "LocationId": 11223344,
+                "ManagerAssignmentId": 11223344,
+                "ManagerId": 11223344,
+                "assignmentDFF": [],
+                "assignmentExtraInformation": [],
+                "empreps": [],
+                "links": [
+                    "Sardar Patel"
+                ]
+            }
+        ]
+    },
+    {
+        "FirstName": "Brijen",
+        "LastName": "sadariya",
+        "id": 8,
+        "assignments": [
+            {
+                "ActionCode": "12",
+                "ActionReasonCode": "1",
+                "ActualTerminationDate": "14/12/2021",
+                "AssignmentCategory": "bike",
+                "AssignmentId": "45"
+            }
+        ]
+    }
+]
