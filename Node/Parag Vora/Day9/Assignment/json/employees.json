@@ -1,0 +1,58 @@
+[
+    {
+        "EmpId": 1,
+        "FirstName": "parag",
+        "LastName": "vora",
+        "DateOfBirth": "28/12/2000",
+        "AddressLine1": "opposite P.H.C. ,sanathali",
+        "City": "jasdan",
+        "State": "Gujarat",
+        "Country": "India",
+        "HireDate": "12/04/2021",
+        "Assignments": [
+            {
+                "AssignmentId": 1,
+                "AssignmentCategory": "Front End",
+                "AssignmentName": "File Sturcture",
+                "AssignmentStatus": "completed"
+            },
+            {
+                "AssignmentId": 2,
+                "AssignmentCategory": "Front End",
+                "AssignmentName": "Project",
+                "AssignmentStatus": "completed"
+            }
+        ]
+    },
+    {
+        "EmpId": 2,
+        "FirstName": "brijen",
+        "LastName": "vadodariya",
+        "DateOfBirth": "02/08/2004",
+        "AddressLine1": "rajkot",
+        "City": "rajkot",
+        "State": "Gujarat",
+        "Country": "India",
+        "HireDate": "12/04/2021"
+    },
+    {
+        "EmpId": 3,
+        "FirstName": "shreyash",
+        "LastName": "dhaduk",
+        "DateOfBirth": "07/07/2005",
+        "AddressLine1": "soni bazar,atkot",
+        "City": "kheda",
+        "State": "Gujarat",
+        "Country": "India",
+        "HireDate": "12/04/2021",
+        "Assignments": [
+            {
+                "AssignmentId": 1,
+                "AssignmentCategory": "back end",
+                "AssignmentName": "Project",
+                "AssignmentStatus": "completed"
+            }
+        ]
+    }
+]
+
