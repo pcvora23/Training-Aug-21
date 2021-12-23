@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class StudentIdCard extends Component {
   render() {
-    const { student, college, children, deleteStudent, editStudent } =
+    const { student, college, children, deleteStudent, editStudent,isvalid } =
       this.props;
       
     return (

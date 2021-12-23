@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class StudentForm extends Component {
   render() {
     
-    const { handleSubmit, handleChange, student, editForm, isValid } =
+    const { handleSubmit, handleChange, student, editForm, isvalid } =
     this.props;
     const { id, firstName, lastName, image, collegeName, collegeLogo } =
       student;
@@ -143,7 +143,7 @@ export default class StudentForm extends Component {
                 <div className="col-md-3"></div>
                 <div className="col-md-9">
                   <button
-                    // disabled={isValid ? false : true}
+                    disabled={isvalid ? false : true}
                     type="submit"
                     className={
                       editForm
