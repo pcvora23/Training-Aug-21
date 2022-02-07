@@ -1,26 +1,16 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-const EMAIL = process.env.EMAIL;
-const PASSWORD = process.env.PASSWORD;
-const adminAuthenticateToken = (req, res, next) => {
-    try {
-        const authHeader = req.headers["authorization"];
-        const token = authHeader.split(" ")[1];
-        var decoded = jwt.verify(token, "private");
-        if(decoded.email == EMAIL && decoded.password == PASSWORD)
-        {
-            next();
-        }
-        else{
-            res.status(401).json({
-                erorr: "Unauthorized Access",
-            });
-        }
-    } catch (error) {
+const express = require('express');
+const router = express.Router();
+
+router.use((req, res, next) => {
+    if(req.decoded.role === 'admin') {
+        next();
+    }
+    else{
         res.status(401).json({
-            erorr: "Unauthorized Access",
+            Error: "Permission Denied",
+            Error_Message: "You are not an Admin!",
         });
     }
-};
-module.exports = adminAuthenticateToken;
+})
 
+module.exports = router;

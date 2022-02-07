@@ -1,6 +1,8 @@
 var express = require("express");
 const CategoryDomain = require("../Domain/category.domain");
 var router = express.Router();
+const verifyAdmin = require("../Authentication/adminverifytoken");
+const verifyLogIn = require("../Authentication/verify");
 
 class CategoryController {
     //To get all Categories
@@ -40,14 +42,15 @@ class CategoryController {
   router.get("/", CategoryController.get);
   //To get an single Category by id
   router.get("/:CateId", CategoryController.getCategory);
+
+  router.use(verifyLogIn);
+  router.use(verifyAdmin);
   //To delete an Category
   router.delete("/:CateId", CategoryController.deleteCategory);
   //To Create New Category
   router.post("/", CategoryController.insertCategory);
   //To Update Data Of An Category
   router.put("/", CategoryController.updateCategory);
-  //To get Product
-//   router.get("/:CateId/patients/:ProdId", CategoryController.getProducts);
   
   module.exports = router;
   

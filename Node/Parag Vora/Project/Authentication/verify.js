@@ -1,31 +1,28 @@
+const express = require('express');
+const router = express.Router();
 const jwt = require('jsonwebtoken');
-const config = require('../Config/config');
 
-
-function verifyToken(req, res, next) {
-    var token = req.headers["x-axcess-token"];
+router.use([express.json()],(req , res , next)=>{
+    let token = req.headers['authorization'];
     // console.log(token);
-    // console.log("hello");
-    jwt.verify(token, config.secretKey, {
-        algorithm: config.algorithm,
-    }, function (err, decoded) {
-        if (err) {
-            let errdata =
-            {
-                message: err.message,
-                expiredAt: err.expiredAt,
-            }
-            console.log(errdata);
-            return res.status(401).json(
-                {
-                    message: 'unauthorised access',
-                }
-            )
-        }
-        req.decoded = decoded;
-        console.log(decoded);
-        next();
-    })
-}
 
-module.exports = verifyToken;
+
+        jwt.verify(token, global.config.secretKey,
+            { algorithm: global.config.algorithm},
+            (err, decoded) =>{
+                if (err) {
+                    return res.status(401).json({
+                        Error: 'Unauthorized Access',
+                        Error_Message :`${err.message}`
+                    });
+                    }
+            req.decoded = decoded._doc;
+            // console.log(decoded._doc);
+            next();
+            }
+        ); 
+        
+});
+
+
+module.exports = router;

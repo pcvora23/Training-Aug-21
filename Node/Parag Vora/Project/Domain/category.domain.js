@@ -32,7 +32,7 @@ class CategoryDomain {
       res.status(404).send("Product Not Found");
     }
   }
-  //To Insert Product
+  //To Insert category
   async insertCategory(req, res) {
     //getting user input
     let data = req.body;
@@ -45,7 +45,7 @@ class CategoryDomain {
       res.send(e.message);
     }
   }
-  //To delete a Product
+  //To delete a category
   async deleteCategory(req, res) {
     let ID = req.params.CateId;
     const Category = await CategoryModel.deleteOne({id:ID});
@@ -60,7 +60,7 @@ class CategoryDomain {
     //getting user input
     let data = req.body;
     let ID = req.body.id;
-    const Category = await CategoryModel.find({id:4});
+    const Category = await CategoryModel.find({id:ID});
     console.log(Category);
     let isAvail = Category.find((e) => e.id == ID);
     // console.log(isAvail);
@@ -73,7 +73,7 @@ class CategoryDomain {
           },
           { new: true }
         );
-        res.send(result);
+        res.send('product updated succesfully');
       } catch (e) {
         res.send(e.message);
       }

@@ -3,13 +3,18 @@ const ProductModel = require("../Model/product.model");
 class ProductDomain {
   //To get all Products
   async getAllProduct(req, res) {
-    const Products = await ProductModel.find();
+    const Products = await ProductModel.find()
+      .populate("category")
+      .populate("subcategory");
+    // const Products = await ProductModel.find().populate("category",'name -_id');
     res.send(Products);
   }
   //To get Product
   async getProduct(req, res) {
-    let ID = req.params.prodId;
-    const Product = await ProductModel.find({id:ID}).populate("Category");
+    let id = req.params.prodId;
+    const Product = await ProductModel.find({ id: id })
+      .populate("category")
+      .populate("subcategory");
     if (Product) {
       res.send(Product);
     } else {
@@ -20,7 +25,9 @@ class ProductDomain {
   async getCategory(req, res) {
     let id = req.params.ProdId;
     let cId = req.params.CateId;
-    const Product = await ProductModel.findById(id).populate("Category");
+    const Product = await ProductModel.findById(id)
+      .populate("category", " -OfferPercentage")
+      .populate("subcategory");
     if (Product) {
       const result = Product.Category.find((p) => p.id == cId);
       if (result) {
@@ -48,7 +55,7 @@ class ProductDomain {
   //To delete a Product
   async deleteProduct(req, res) {
     let ID = req.params.prodId;
-    const Product = await ProductModel.deleteOne({id:ID});
+    const Product = await ProductModel.deleteOne({ id: ID });
     if (Product) {
       res.send("Product Record Deleted Successfully");
     } else {
@@ -60,22 +67,44 @@ class ProductDomain {
     //getting user input
     let data = req.body;
     let id = req.body.id;
-    const Products = await ProductModel.find();
-    let isAvail = Products.find((e) => e.id == id);
+    const Products = await ProductModel.find({id:id});
+    // let isAvail = Products.find((e) => e.id == id);
 
-    if (isAvail) {
+    if (Products.length > 0) {
       try {
-        const result = await ProductModel.findByIdAndUpdate(
-          id,
+        const result = await ProductModel.updateOne(
+          {id:id},
           {
             $set: data,
           },
           { new: true }
         );
-        res.send(result);
+        res.send('product upafdted successfully');
       } catch (e) {
         res.send(e.message);
       }
+    } else {
+      res.status(404).send("Product Not Found");
+    }
+  }
+
+  // filter
+  
+  async getProductFilter(req, res) {
+    var query = {};
+    if (req.query.OfferPercentage != undefined) {
+      query["OfferPercentage"] = parseInt(req.query.OfferPercentage);
+    }
+
+    if (req.query.minPrice != "null" && req.query.maxPrice) {
+      query["price"] = { $gt: req.query.minPrice, $lt: req.query.maxPrice };
+    }
+
+    console.log(query);
+    const Product = await ProductModel.find(query).populate("category").populate('subcategory').exec();
+
+    if (Product) {
+      res.status(200).send(Product);
     } else {
       res.status(404).send("Product Not Found");
     }

@@ -1,6 +1,8 @@
 var express = require("express");
 const ProductDomain = require("../Domain/product.domain");
 var router = express.Router();
+const verifyAdmin = require("../Authentication/adminverifytoken");
+const verifyLogIn = require("../Authentication/verify");
 
 class ProductController {
   //To get all Products
@@ -34,12 +36,26 @@ class ProductController {
     const p = new ProductDomain();
     p.getCategory(req, res);
   }
+
+  // product filter
+  static async getProductFilter(req,res)
+  {
+    const p = new ProductDomain();
+    p.getProductFilter(req,res);
+  }
 }
 
 //To get all products
 router.get("/", ProductController.get);
+
 //To get an single product by id
 router.get("/:prodId", ProductController.getProduct);
+
+// product filter
+router.get('/filter/search',ProductController.getProductFilter);
+
+router.use(verifyLogIn);
+router.use(verifyAdmin);
 //To delete an product
 router.delete("/:prodId", ProductController.deleteProduct);
 //To Create New product

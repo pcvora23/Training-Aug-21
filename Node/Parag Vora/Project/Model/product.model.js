@@ -9,14 +9,18 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Category:
+    img:{
+        type:String
+    },
+    category:
     {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
     },
-    OfferPercentage: {
-        type: Number,
-        default: 0
+    subcategory:
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "SubCategory",
     },
     brand:
     {
@@ -24,13 +28,14 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     manufacturedDate: {
-        type: String,
+        type: Date,
         required: true
     },
     price:
     {
         type: Number,
-        required: true
+        required: true,
+        min:0
     },
     description:
     {
@@ -48,3 +53,5 @@ const ProductSchema = new mongoose.Schema({
 const ProductModel = mongoose.model("Product", ProductSchema);
 
 module.exports = ProductModel;
+
+
