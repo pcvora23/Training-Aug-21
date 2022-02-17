@@ -43,6 +43,20 @@ class ProductController {
     const p = new ProductDomain();
     p.getProductFilter(req,res);
   }
+
+  // product detail from _id
+  static async getDetailFrom_id(req,res)
+  {
+    const p = new ProductDomain();
+    p.getDetailFrom_id(req,res);
+  }
+
+  // last Id
+  static async getLastInsertedId(req,res)
+  {
+    const p = new ProductDomain();
+    p.getLastInsertedId(req,res);
+  }
 }
 
 //To get all products
@@ -51,8 +65,13 @@ router.get("/", ProductController.get);
 //To get an single product by id
 router.get("/:prodId", ProductController.getProduct);
 
+//To get a last inserted id
+router.get("/filter/lastid", ProductController.getLastInsertedId);
+
 // product filter
 router.get('/filter/search',ProductController.getProductFilter);
+
+router.get('/detail/:prod_id',ProductController.getDetailFrom_id)
 
 router.use(verifyLogIn);
 router.use(verifyAdmin);

@@ -11,6 +11,9 @@ const products = require('./Controller/product.controller');
 const category = require('./Controller/category.controller');
 const subcategory = require('./Controller/subcategory.controller');
 const user = require('./Controller/user.controller');
+const cart = require('./Controller/cart.controller');
+const payment = require('./Controller/payment.controller');
+const order = require('./Controller/order.controller');
 app.use(cors());
 
 app.get('/',(req,res)=>
@@ -28,6 +31,9 @@ app.use('/user',user);
 app.use('/products',products);
 app.use('/category',category);
 app.use('/subcategory',subcategory);
+app.use('/cart',cart);
+app.use('/order',order);
+app.use('/payment',payment);
 app.use(verifyLogIn);
 
 app.listen(8080,()=>

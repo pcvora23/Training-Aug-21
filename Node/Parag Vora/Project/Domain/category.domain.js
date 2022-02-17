@@ -40,7 +40,7 @@ class CategoryDomain {
     const Category = new CategoryModel(data);
     try {
       const result = await Category.save();
-      res.send(result);
+      res.send('Category Added Successfully');
     } catch (e) {
       res.send(e.message);
     }
@@ -73,13 +73,19 @@ class CategoryDomain {
           },
           { new: true }
         );
-        res.send('product updated succesfully');
+        res.send('Category updated succesfully');
       } catch (e) {
         res.send(e.message);
       }
     } else {
       res.status(404).send("Category Not Found");
     }
+  }
+  // to get last inserted id
+  async getNewCategoryId(req,res)
+  {
+    const newId = await CategoryModel.find({}).sort({id:-1}).limit(1)
+    res.send(newId);
   }
 }
 module.exports = CategoryDomain;

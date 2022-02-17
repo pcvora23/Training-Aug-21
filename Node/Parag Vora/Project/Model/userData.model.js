@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   id: {
     type: Number,
     required: true,
-    unique: true,
+    // unique: true,
     trim: true,
   },
   name: { type: String, trim: true, required: true },
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
-    unique: true,
+    // unique: true,
     trim: true,
     match:
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,

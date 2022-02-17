@@ -36,12 +36,21 @@ class CategoryController {
       const p = new CategoryDomain();
       p.getCategory(req, res);
     }
+
+    // to get newId
+    static async getNewCategoryId(req, res) {
+      const p = new CategoryDomain();
+      p.getNewCategoryId(req, res);
+    }
+
   }
   
   //To get all Categories
   router.get("/", CategoryController.get);
   //To get an single Category by id
   router.get("/:CateId", CategoryController.getCategory);
+  // to get newId
+  router.get('/getlastid/newid',CategoryController.getNewCategoryId);
 
   router.use(verifyLogIn);
   router.use(verifyAdmin);

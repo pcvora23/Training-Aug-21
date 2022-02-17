@@ -47,7 +47,7 @@ class ProductDomain {
     const Product = new ProductModel(data);
     try {
       const result = await Product.save();
-      res.send(result);
+      res.send("Product Added Successfully");
     } catch (e) {
       res.send(e.message);
     }
@@ -67,19 +67,19 @@ class ProductDomain {
     //getting user input
     let data = req.body;
     let id = req.body.id;
-    const Products = await ProductModel.find({id:id});
+    const Products = await ProductModel.find({ id: id });
     // let isAvail = Products.find((e) => e.id == id);
 
     if (Products.length > 0) {
       try {
         const result = await ProductModel.updateOne(
-          {id:id},
+          { id: id },
           {
             $set: data,
           },
           { new: true }
         );
-        res.send('product upafdted successfully');
+        res.send("product updated successfully");
       } catch (e) {
         res.send(e.message);
       }
@@ -89,7 +89,6 @@ class ProductDomain {
   }
 
   // filter
-  
   async getProductFilter(req, res) {
     var query = {};
     if (req.query.OfferPercentage != undefined) {
@@ -101,13 +100,33 @@ class ProductDomain {
     }
 
     console.log(query);
-    const Product = await ProductModel.find(query).populate("category").populate('subcategory').exec();
+    const Product = await ProductModel.find(query)
+      .populate("category")
+      .populate("subcategory")
+      .exec();
 
     if (Product) {
       res.status(200).send(Product);
     } else {
       res.status(404).send("Product Not Found");
     }
+  }
+
+  // get Last inserted document
+  async getLastInsertedId(req, res) {
+    const Products = await ProductModel.find({})
+      .sort({ id: -1 })
+      .limit(1)
+      .populate("category")
+      .populate("subcategory");
+    res.send(Products);
+  }
+
+  async getDetailFrom_id(req,res)
+  {
+    let prod_id = req.params.prod_id;
+    const productDetail =await ProductModel.findOne({_id:prod_id});
+    res.send(productDetail);
   }
 }
 

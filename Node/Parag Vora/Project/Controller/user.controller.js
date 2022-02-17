@@ -28,6 +28,10 @@ class UserController {
         const userData = new UserData();
         userData.logIn(req, res);
     }
+    static async getNewUserId(req, res) {
+        const userData = new UserData();
+        userData.getNewUserId(req, res);
+    }
 }
 
 //Post Methods
@@ -36,21 +40,25 @@ router.post("/register", UserController.addUser);
 
 // login
 router.post('/login',UserController.logIn);
+
+// to get lastId
+router.get('/getnew/lastid',UserController.getNewUserId);
+
 router.use(verifyLogIn)
 
 //Get Methods
-router.get("/",  UserController.getUserDetailsFromId);
+router.get("/:userId",  UserController.getUserDetailsFromId);
 
 //Put Methods
 router.put("/", UserController.updateUser);
 
 //Delete Methods
-router.delete("/", UserController.deleteUser);
+router.delete("/:id", UserController.deleteUser);
 
 
 
 
 router.use(verifyAdmin);
-router.get("/getAllUser",  UserController.getAllUserData);
+router.get("/get/getAllUser",  UserController.getAllUserData);
 
 module.exports = router;
