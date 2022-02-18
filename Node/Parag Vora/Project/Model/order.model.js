@@ -21,7 +21,6 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    default:'312,bithub, near ambedkarnagr,krutionella,rajkot(360004)'
   },
   OrderDate: {
     type: Date,
